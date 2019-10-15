@@ -10,7 +10,7 @@ var MYAPP = MYAPP || {
 
 // (2)モジュールの定義
 MYAPP.util.math = (function(){
-    
+
     add = function(x, y) {
         return x + y;
     },
@@ -21,9 +21,9 @@ MYAPP.util.math = (function(){
         return x * y;
     },
     divide = function(x, y) {
-        return y !== 0 ? x / y : y / "NaN"; 
+        return y !== 0 ? x / y : y / "NaN";
     }
-    
+
     // public API
     return {
         add: add,
