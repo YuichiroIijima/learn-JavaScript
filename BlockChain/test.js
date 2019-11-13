@@ -1,26 +1,56 @@
-const BlockChain = require("./blockchain");
-const bitcoin = new BlockChain();
+const Blockchain = require("./blockchain");
+const bitcoin = new Blockchain();
 
-const previousBlockHash = "0AA0IAIJIJUIGGUGUYG";
+// トランザクションの作成
+bitcoin.createNewTransaction(
+  100,
+  "ALICE090970FYFFYFYFIF",
+  "BOB797789790JFJFFGFJF"
+);
 
-const currentBlockData = [
-  {
-    amount: 10,
-    sender: "ALICE090970FYFFYFYFIF",
-    recipient: "BOB797789790JFJFFGFJF"
-  },
-  {
-    amount: 30,
-    sender: "ALICGHIUGUGOOIGODYGDHFD",
-    recipient: "BOBTYSHGHOUHOHOHOHOHO"
-  },
-  {
-    amount: 200,
-    sender: "ALICEHJGUGUTETEEUUCVVUVUV",
-    recipient: "BOBGIUGIUGIUDRTESREAREUY"
-  }
-];
+function mining(bitcoin) {
+  // 前のブロックを取得
+  const lastBlock = bitcoin.getLastBlock();
 
-const nonce = 100;
+  // 前のブロックのハッシュを取得
+  const previousBlockHash = lastBlock["hash"];
 
-console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce));
+  // 現在のブロックのデータ
+  const currentBlockData = {
+    transaction: bitcoin.previousBlockHash,
+    index: lastBlock["index"] + 1
+  };
+
+  // Powでnonceを求める
+  const nonce = bitcoin.proofOfwork(previousBlockHash, currentBlockData);
+
+  // 前回のブロックのハッシュ、今回のブロックのデータ、nonceをもとにハッシュを求める
+  const blockHash = bitcoin.hashBlock(
+    previousBlockHash,
+    currentBlockData,
+    nonce
+  );
+
+  // ブロック生成
+  const newBlock = bitcoin.createNewBlock(nonce, previousBlockHash, blockHash);
+}
+
+mining(bitcoin);
+
+bitcoin.createNewTransaction(
+  200,
+  "ALICE090970FYFFYFYFIF",
+  "BOB797789790JFJFFGFJF"
+);
+
+mining(bitcoin);
+
+bitcoin.createNewTransaction(
+  300,
+  "ALICE090970FYFFYFYFIF",
+  "BOB797789790JFJFFGFJF"
+);
+
+mining(bitcoin);
+
+console.log(bitcoin);
