@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="aaaaa">t<strong>es</strong>t</p>
+
+    <script>
+      let p = document.getElementById('aaaaa');
+      console.log(p);
+      console.log(p.innerHTML);
+      // この際、pタグの下の木構造を全て破壊して、新たに木構造を一から作り直している。
+      // やり方としては原始的すぎるらしい。
+      p.innerHTML = "書き換えた";
+    </script>
+  </body>
+</html>
