@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+</head>
+<body>
+  <p>段落１です。</p>
+  <p id="abc">段落２です。</p>
+  <p>段落３です。</p>
+  <p id="aaaaa">t<strong>es</strong>t</p>
+
+  <script>
+    const p = document.getElementById("abc");
+
+    const prev = p.previousElementSibling;
+    const next = p.nextElementSibling;
+
+    console.log(prev);
+    console.log(next);
+
+    const a = document.getElementById("aaaaa");
+    
+    const newnode = document.createElement("em");
+    newnode.appendChild(document.createTextNode("置き換えるノード"));
+
+    a.replaceChild(newnode, a.firstChild)
+  </script>
+</body>
+</html>
