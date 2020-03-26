@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test</title>
+  </head>
+  <body>
+    <p id="test">t<strong>es</strong>t</p>
+    <script>
+      const newElement = document.createElement('p');
+      const newTextNode = document.createTextNode("新しいテキストノード");
+      console.log(newTextNode)
+
+      newElement.appendChild(newTextNode);
+      document.body.appendChild(newElement)
+    </script>
+  </body>
+</html>
