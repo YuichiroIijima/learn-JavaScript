@@ -3,18 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>test</title>
   </head>
   <body>
     <p id="aaaaa">t<strong>es</strong>t</p>
 
     <script>
+      // 昔ながらのDOM操作の方法
+        /*
+        console.log(p);
+        console.log(p.innerHTML);
+        // この際、pタグの下の木構造を全て破壊して、新たに木構造を一から作り直している。
+        // やり方としては原始的すぎるらしい。
+        p.innerHTML = "書き換えた";
+        */
       let p = document.getElementById('aaaaa');
-      console.log(p);
-      console.log(p.innerHTML);
-      // この際、pタグの下の木構造を全て破壊して、新たに木構造を一から作り直している。
-      // やり方としては原始的すぎるらしい。
-      p.innerHTML = "書き換えた";
+      let children = p.childNodes;
+      let textnode = children[0];
+      textnode.nodeValue = "書き換えました";
+      // こういう書き方もできる
+      // console.log(children.item(1).tagName);
+      // console.log(children[1].tagName);
     </script>
   </body>
 </html>
