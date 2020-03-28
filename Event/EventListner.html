@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="p">test</p>
+  <script>
+    function aaa () { 
+      console.log("click");
+    }
+    function bbb() {
+      console.log("click ME");
+    }
+
+    let p = document.getElementById("p");
+    
+    // これと同じ？
+    // p.onclick = aaa;
+    
+    p.addEventListener("click", function() {
+      console.log("click");
+    }, false);
+    p.addEventListener("click", bbb, false);
+    // console.logの内容が一致しないとremoveされないっぽい
+    p.removeEventListener("click", function() {
+      console.log("click");
+    }, false);
+
+    const handler = function() {
+      console.log("foo!");
+      p.removeEventListener("click", handler, false);
+    }
+
+    p.addEventListener("click", handler, false);
+  </script>
+</body>
+</html>
