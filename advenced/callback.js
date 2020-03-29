@@ -8,3 +8,4 @@ function wait(callback, num) {
 wait(() => {
   console.log("callback function is called");
 }, 0);
+
